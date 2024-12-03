@@ -4,10 +4,10 @@
 
 
 @{
-    var paragraphContent = Model?.content.Value<string>("paragraphComtent");
+    var paragraphContent = Model?.Content.Value<string>("paragraphComtent");
 }
 
 
-@if(!string.IsNullOrEmpty(paragraphComtent)) {
-    <p>@paragraphComtent</p>
+@if(!string.IsNullOrEmpty(paragraphContent)) {
+    <p>@paragraphContent</p>
 }

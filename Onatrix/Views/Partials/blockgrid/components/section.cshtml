@@ -1,7 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>;
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
- Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter;
+@using static Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter;
 @{
     var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
     var sectionId = sectionTitle?.ToString().ToLower().Trim().Replace(" ", "-");
@@ -11,22 +11,22 @@
     var spacingBottomClass = (Model.Content.Value<bool>("addSpaceToBottom")) ? "spacing-bottom" : "";
     var centerContentClass = (Model.Content.Value<bool>("centerContentOnPage")) ? "center" : "";
 
-    var sectionBackgroundColorLabel = Model?.Content?.Value.<PickedColor>("sectionBackgroundColor")?.Label.ToLower() ?? null;
-    var backgroundColoClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel) && sectionBackgroundColorLabel != "none") ? $"bg-{backgroundColorLabel}" : "";
+    var sectionBackgroundColorLabel = Model?.Content?.Value<PickedColor>("sectionBackgroundColor")?.Label.ToLower() ?? null;
+    var backgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel) && sectionBackgroundColorLabel != "none") ? $"bg-{sectionBackgroundColorLabel}" : "";
 
-    var sectionBackgoundImage = Model?.Content.Value.<IPublishedContent>("sectionBackgoundImage")?.Url() ?? null;
+    var sectionBackgoundImage = Model?.Content.Value<IPublishedContent>("sectionBackgoundImage")?.Url() ?? null;
 }
 
 <section id="@sectionId" class="@spacingTopClass spacingBottomClass">
 
     @if (!string.IsNullOrEmpty(backgroundColorClass))
     {
-        <div class="backgound  @bgColorClass"></div>
+        <div class="backgound  @backgroundColorClass"></div>
     }
 
 
 
-    <div class="@container centerContentClass">
+    <div class="container @centerContentClass">
 
         @if (!string.IsNullOrEmpty(sectionBackgoundImage))
         {

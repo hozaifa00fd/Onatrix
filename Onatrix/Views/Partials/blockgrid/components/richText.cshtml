@@ -4,10 +4,12 @@
 
 
 @{
-    var headlineContent = Model?.Content.Value<string>("headlineContent");
+    var richTextContent = Model?.Content.Value("richTextContent") ?? null;
 }
 
 
-@if(!string.IsNullOrEmpty(headlineContent)) {
-    <h1>@headlineContent</h1>
+@if(richTextContent != null) {
+    <div class="content">
+        @richTextContent
+    </div>
 }
